@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<style>
+	th,td {
+    border: 1px solid black;
+	text-align: left;
+	height: 400;
+	margin: 0px auto
+}
+
+table {
+    width: 40%;
+    border-collapse: collapse;
+	margin: 0px auto
+}
+h1 {
+align:center;
+text-align : center;
+background-color :black;
+color:white;
+}
+
+table, td{
+    border: 1px solid black;
+}
+</style>
+        
+    </head>
+    <br>
+<br>
+<h1>Output of Upload</h1>
+<hr>
+
+<br><br> <br>
+
+
+    <body>
+
+
+            {% csrf_token %}
+
+				<table>
+             {% for key,val in skills %} 
+    
+                    <tr>
+                        <td>
+                         {{key}}
+                        </td>
+                        <td>
+                             {{val}}
+                        </td>
+                        </tr>
+                        <tr>
+						<td>{% empty %}
+						{{error_message}}
+						</td>
+                        </tr>
+                    {% endfor %}
+					</table>
+                    <a href="/skillsdb/upload/" style="width:100px; height:30px; background:black; display:table-cell; vertical-align:middle; text-align:center; color:white;">Back</a>
+				  
+                <br>
+                 <a href="/skillsdb/search_by_skills/" style="width:100px; height:30px; background:black; display:table-cell; vertical-align:middle; text-align:center; color:white;">Search</a>
+            <br>
+            
+
+    </body>
+
+</html>

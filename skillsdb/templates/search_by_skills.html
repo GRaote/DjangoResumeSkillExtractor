@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<style>
+	th,td {
+    border: 1px solid black;
+	text-align: left;
+	height: 400;
+	margin: 0px auto
+}
+
+table {
+    width: 40%;
+	border :1px solid black;
+	margin: 0px auto
+}
+h1 {
+align:center;
+text-align : center;
+background-color :black;
+color:white;
+}
+
+#textbox{
+height: 25px ;
+width: 220px ;
+font-size: 14px ;
+
+}
+
+a:link {
+    text-decoration: none;
+	float :right;
+}
+</style>
+        <title></title>
+    </head>
+
+    <h1>Search by Skill</h1>
+<hr>
+<br><br> <br>
+
+
+    <body>
+
+        <form name="form" method="post" action="/skillsdb/search_by_skills/">
+
+            {% csrf_token %}
+
+            
+           
+            Enter Skill to search: <input name="Search" value="" type=text" /> <br>&nbsp;<br>
+ 
+                <input type="submit" name="search"/>
+				<table>
+                    
+             {% for data in dataFound %} 
+                    
+                    <tr><td> 
+                        candidate's full name: {{data.entry_id.candidate_fullname}}
+                        </td>
+                        <td>
+                            skill name: {{data.skills_name}}
+                        </td>
+						<td>
+                         skill count: {{data.skill_count}}
+                        </td>
+                
+                            <td> <a href="/skillsdb/downloadfile/?file_name={{data.entry_id.file1}}">Download</a> </td>
+                         
+                        {% empty %}
+                        <p>
+						{{error_message}}
+						</p>
+                        
+                        <tr>
+                    {% endfor %}
+					</table>
+            
+				  <a href="/skillsdb/upload/" style="width:100px; height:30px; background:black; display:table-cell; vertical-align:middle; text-align:center; color:white;">Back</a>
+                <br>
+            
+
+    </body>
+
+</html>

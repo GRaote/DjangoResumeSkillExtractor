@@ -1,0 +1,80 @@
+
+<head>
+<style>
+ th {
+    border: 1px solid black;
+	text-align: left;
+	height: 400;
+	margin: 0px auto;
+}
+
+table {
+    width: 40%;
+	border :1px solid black;
+}
+h1 {
+align:center;
+text-align : center;
+background-color :black;
+color:white;
+}
+#textbox{
+height: 25px ;
+width: 220px ;
+font-size: 14px ;
+
+}
+#submit{
+height: 25px ;
+width: 100px ;
+font-size: 14px ;
+float: center;
+
+}
+a:link {
+    text-decoration: none;
+	float :right;
+}
+</style>
+
+	
+</head>
+<br>
+<br>
+<h1>Upload The files</h1>
+<hr>
+<br><br> <br>
+<a href="/skillsdb/search_by_skills/" style="width:100px; height:30px; background:black; display:table-cell; vertical-align:middle; text-align:center; color:white;">Search</a>
+            <br>
+ <form  method="post" action="/skillsdb/upload/" autocomplete="off" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            
+            <table>
+                {% for field in form.visible_fields %}
+                <tr>
+                    <td>
+                        {{ field.help_text }}
+                    </td>
+                    <td>
+                      
+                            
+                        {{ field }}
+                        
+                    </td>
+                    <td>{% empty %}
+                        {{ field.errors }}
+						{{error_message}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+              
+           
+        
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="Upload"/><br><br>
+         
+                        {{ field.errors }}
+                        {{error_message}}
+        </form>
+
